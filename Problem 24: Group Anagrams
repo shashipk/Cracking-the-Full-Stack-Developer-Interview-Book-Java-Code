@@ -1,0 +1,30 @@
+import java.util.*;
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        if (strs == null || strs.length == 0) {
+            return new ArrayList<>();
+        }
+        
+        // Create a HashMap to store groups of anagrams
+        Map<String, List<String>> anagramGroups = new HashMap<>();
+        
+        for (String str : strs) {
+            // Sort the characters in the string to create a key
+            char[] charArray = str.toCharArray();
+            Arrays.sort(charArray);
+            String key = String.valueOf(charArray);
+            
+            // Check if the key exists in the HashMap
+            if (!anagramGroups.containsKey(key)) {
+                anagramGroups.put(key, new ArrayList<>());
+            }
+            
+            // Add the original string to the corresponding anagram group
+            anagramGroups.get(key).add(str);
+        }
+        
+        // Convert the values (lists of anagrams) to a result list
+        return new ArrayList<>(anagramGroups.values());
+    }
+}
