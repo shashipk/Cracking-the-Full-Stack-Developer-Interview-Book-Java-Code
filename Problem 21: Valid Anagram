@@ -1,0 +1,23 @@
+public class ValidAnagram {
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) {
+            return false; // Different lengths, cannot be anagrams.
+        }
+
+        int[] count = new int[26]; // Assuming lowercase English letters.
+        for (char ch : s.toCharArray()) {
+            count[ch - 'a']++;
+        }
+        for (char ch : t.toCharArray()) {
+            count[ch - 'a']--;
+        }
+
+        for (int i : count) {
+            if (i != 0) {
+                // Non-zero count means different character frequencies.
+                return false;
+            }
+        }
+        return true;
+    }
+}
