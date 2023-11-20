@@ -1,0 +1,13 @@
+public boolean uniqueOccurrences(int[] arr) {
+    int[] count = new int[2001];
+    Set<Integer> uniqueCounts = new HashSet<>();
+    Set<Integer> seen = new HashSet<>();
+    
+    for (int num : arr) {
+        count[num + 1000]++;
+        uniqueCounts.add(count[num + 1000]);
+        seen.add(num);
+    }
+    
+    return uniqueCounts.size() == seen.size();
+}
