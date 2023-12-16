@@ -1,0 +1,22 @@
+public int shortestSubarray(int[] A, int K) {
+    int n = A.length;
+    int[] prefixSum = new int[n + 1];
+    for (int i = 0; i < n; i++) {
+        prefixSum[i + 1] = prefixSum[i] + A[i];
+    }
+    
+    Deque<Integer> deque = new LinkedList<>();
+    int shortestLength = n + 1;
+    
+    for (int i = 0; i <= n; i++) {
+        while (!deque.isEmpty() && prefixSum[i] - prefixSum[deque.peek()] >= K) {
+            shortestLength = Math.min(shortestLength, i - deque.poll());
+        }
+        while (!deque.isEmpty() && prefixSum[i] <= prefixSum[deque.peekLast()]) {
+            deque.pollLast();
+        }
+        deque.offer(i);
+    }
+    
+    return shortestLength <= n ? shortestLength : -1;
+}
