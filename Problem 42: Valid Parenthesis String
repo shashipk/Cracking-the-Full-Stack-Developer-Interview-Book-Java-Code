@@ -1,0 +1,29 @@
+public boolean checkValidString(String s) {
+    Stack<Integer> openParenStack = new Stack<>();
+    Stack<Integer> asteriskStack = new Stack<>();
+
+    for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if (c == '(') {
+            openParenStack.push(i);
+        } else if (c == '*') {
+            asteriskStack.push(i);
+        } else { // c == ')'
+            if (!openParenStack.isEmpty()) {
+                openParenStack.pop();
+            } else if (!asteriskStack.isEmpty()) {
+                asteriskStack.pop();
+            } else {
+                return false;
+            }
+        }
+    }
+
+    while (!openParenStack.isEmpty()) {
+        if (asteriskStack.isEmpty() || openParenStack.pop() > asteriskStack.pop()) {
+            return false;
+        }
+    }
+
+    return true;
+}
