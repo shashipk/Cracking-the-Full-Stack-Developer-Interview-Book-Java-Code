@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode(int x) {
+        val = x;
+        next = null;
+    }
+}
+
+public class LinkedListBuilder {
+
+    public static ListNode buildLinkedList() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of nodes in the linked list: ");
+        int n = scanner.nextInt();
+
+        if (n <= 0) {
+            System.out.println("No nodes to add.");
+            return null;
+        }
+
+        System.out.print("Enter the value for node 1: ");
+        ListNode head = new ListNode(scanner.nextInt());
+        ListNode tail = head;
+
+        for (int i = 1; i < n; i++) {
+            System.out.print("Enter the value for node " + (i + 1) + ": ");
+            tail.next = new ListNode(scanner.nextInt());
+            tail = tail.next;
+        }
+
+        return head;
+    }
+
+    public static void printLinkedList(ListNode head) {
+        while (head != null) {
+            System.out.print(head.val + " -> ");
+            head = head.next;
+        }
+        System.out.println("NULL");
+    }
+
+    public static void main(String[] args) {
+        ListNode linkedListHead = buildLinkedList();
+        System.out.println("Constructed Linked List:");
+        printLinkedList(linkedListHead);
+    }
+}
