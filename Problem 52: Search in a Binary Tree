@@ -1,0 +1,12 @@
+boolean searchRec(TreeNode node, int targetKey) {
+    if (node == null)
+        return false;
+
+    if (node.key == targetKey)
+        return true;
+
+    if (targetKey < node.key)
+        return searchRec(node.left, targetKey);
+    else
+        return searchRec(node.right, targetKey);
+}
