@@ -1,0 +1,7 @@
+void preOrderTraversal(TreeNode node) {
+    if (node != null) {
+        System.out.print(node.key + " ");
+        preOrderTraversal(node.left);
+        preOrderTraversal(node.right);
+    }
+}
