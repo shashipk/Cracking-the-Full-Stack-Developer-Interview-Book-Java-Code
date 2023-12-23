@@ -22,3 +22,12 @@ TreeNode deleteRec(TreeNode root, int key) {
 
     return root;
 }
+ int minValue(TreeNode root) {
+        int minValue = root.key;
+        while (root.left != null) {
+            minValue = root.left.key;
+            root = root.left;
+        }
+        return minValue;
+    }
+    
