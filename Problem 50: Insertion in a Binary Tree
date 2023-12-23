@@ -1,0 +1,56 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+class TreeNode {
+    int key;
+    TreeNode left, right;
+    
+    public TreeNode(int item) {
+        key = item;
+        left = right = null;
+    }
+}
+
+class BinaryTree {
+    TreeNode root;
+    
+    public BinaryTree() {
+        root = null;
+    }
+    
+    void insert(int key) {
+        if (root == null) {
+            root = new TreeNode(key);
+            return;
+        }
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            
+            if (node.left == null) {
+                node.left = new TreeNode(key);
+                return;
+            } else if (node.right == null) {
+                node.right = new TreeNode(key);
+                return;
+            }
+            
+            queue.add(node.left);
+            queue.add(node.right);
+        }
+    }
+
+}
+
+public static void main(String[] args) {
+    BinaryTree bt = new BinaryTree();
+    bt.root = new TreeNode(1);
+    bt.root.left = new TreeNode(2);
+    bt.root.right = new TreeNode(3);
+
+    bt.insert(4);
+
+}
