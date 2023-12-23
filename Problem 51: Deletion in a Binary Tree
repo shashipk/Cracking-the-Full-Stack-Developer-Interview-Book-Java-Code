@@ -1,0 +1,96 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+class TreeNode {
+    int key;
+    TreeNode left, right;
+
+    public TreeNode(int item) {
+        key = item;
+        left = right = null;
+    }
+}
+
+class BinaryTree {
+    TreeNode root;
+
+    public BinaryTree() {
+        root = null;
+    }
+
+    void deleteNode(int key) {
+        if (root == null)
+            return;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        TreeNode toDelete = null;
+        TreeNode deepestRightmostChild = null;
+
+        // Perform level-order traversal to find the node to be deleted
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode currentNode = queue.poll();
+
+            if (currentNode.key == key)
+                toDelete = currentNode;
+
+            if (currentNode.left != null) {
+                queue.add(currentNode.left);
+                deepestRightmostChild = currentNode.left;
+            }
+
+            if (currentNode.right != null) {
+                queue.add(currentNode.right);
+                deepestRightmostChild = currentNode.right;
+            }
+        }
+
+        if (toDelete != null) {
+            toDelete.key = deepestRightmostChild.key;
+            deleteDeepestRightmostChild(root, deepestRightmostChild);
+        }
+    }
+
+    void deleteDeepestRightmostChild(TreeNode root, TreeNode nodeToDelete) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode currentNode = queue.poll();
+
+            if (currentNode.left != null) {
+                if (currentNode.left == nodeToDelete) {
+                    currentNode.left = null;
+                    return;
+                } else {
+                    queue.add(currentNode.left);
+                }
+            }
+
+            if (currentNode.right != null) {
+                if (currentNode.right == nodeToDelete) {
+                    currentNode.right = null;
+                    return;
+                } else {
+                    queue.add(currentNode.right);
+                }
+            }
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BinaryTree bt = new BinaryTree();
+        bt.root = new TreeNode(1);
+        bt.root.left = new TreeNode(2);
+        bt.root.right = new TreeNode(3);
+        bt.root.left.left = new TreeNode(4);
+        bt.root.left.right = new TreeNode(5);
+        bt.root.right.right = new TreeNode(6);
+
+        bt.deleteNode(2);
+
+    }
+}
