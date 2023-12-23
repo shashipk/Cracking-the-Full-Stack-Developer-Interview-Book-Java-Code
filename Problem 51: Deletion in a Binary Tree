@@ -1,0 +1,24 @@
+TreeNode deleteRec(TreeNode root, int key) {
+    if (root == null)
+        return root;
+
+    if (key < root.key)
+        root.left = deleteRec(root.left, key);
+    else if (key > root.key)
+        root.right = deleteRec(root.right, key);
+    else {
+        // Node with only one child or no child
+        if (root.left == null)
+            return root.right;
+        else if (root.right == null)
+            return root.left;
+
+        // Node with two children; find in-order successor
+        root.key = minValue(root.right);
+
+        // Delete the in-order successor
+        root.right = deleteRec(root.right, root.key);
+    }
+
+    return root;
+}
