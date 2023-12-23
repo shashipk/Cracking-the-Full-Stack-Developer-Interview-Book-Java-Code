@@ -1,0 +1,22 @@
+boolean search(TreeNode root, int targetKey) {
+    if (root == null)
+        return false;
+
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.add(root);
+
+    while (!queue.isEmpty()) {
+        TreeNode currentNode = queue.poll();
+
+        if (currentNode.key == targetKey)
+            return true;
+
+        if (currentNode.left != null)
+            queue.add(currentNode.left);
+
+        if (currentNode.right != null)
+            queue.add(currentNode.right);
+    }
+
+    return false;
+}
