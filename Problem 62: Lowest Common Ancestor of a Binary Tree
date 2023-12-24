@@ -1,0 +1,32 @@
+public Node lowestCommonAncestor(Node p, Node q) {
+    // Record paths for nodes p and q
+    List<Node> pathP = new ArrayList<>();
+    List<Node> pathQ = new ArrayList<>();
+    
+    while (p != null) {
+        pathP.add(p);
+        p = p.parent;
+    }
+    
+    while (q != null) {
+        pathQ.add(q);
+        q = q.parent;
+    }
+    
+    // Find the first common ancestor in the paths
+    int i = pathP.size() - 1;
+    int j = pathQ.size() - 1;
+    Node lca = null;
+    
+    while (i >= 0 && j >= 0) {
+        if (pathP.get(i) == pathQ.get(j)) {
+            lca = pathP.get(i);
+        } else {
+            break;
+        }
+        i--;
+        j--;
+    }
+    
+    return lca;
+}
