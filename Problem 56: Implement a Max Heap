@@ -1,0 +1,48 @@
+public class MaxHeap {
+    public void buildMaxHeap(int[] arr) {
+        int n = arr.length;
+
+        // Start from the middle of the array and heapify each subtree
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            heapify(arr, n, i);
+        }
+    }
+
+    // Heapify a subtree rooted at index i
+    private void heapify(int[] arr, int n, int i) {
+        int largest = i; // Initialize largest as root
+        int leftChild = 2 * i + 1; // Left child index
+        int rightChild = 2 * i + 2; // Right child index
+
+        // If left child is larger than root
+        if (leftChild < n && arr[leftChild] > arr[largest]) {
+            largest = leftChild;
+        }
+
+        // If right child is larger than largest so far
+        if (rightChild < n && arr[rightChild] > arr[largest]) {
+            largest = rightChild;
+        }
+
+        // If the largest element is not the root
+        if (largest != i) {
+            // Swap the largest element with the root
+            int temp = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = temp;
+
+            // Recursively heapify the affected subtree
+            heapify(arr, n, largest);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {4, 10, 3, 5, 1};
+        MaxHeap maxHeap = new MaxHeap();
+        maxHeap.buildMaxHeap(arr);
+
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
