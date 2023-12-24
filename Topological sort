@@ -1,0 +1,67 @@
+import java.util.*;
+
+class Graph {
+    private int V; // Number of vertices
+    private List<Integer> adjList[]; // Adjacency list
+
+    public Graph(int vertices) {
+        V = vertices;
+        adjList = new ArrayList[vertices];
+        for (int i = 0; i < vertices; i++) {
+            adjList[i] = new ArrayList<>();
+        }
+    }
+
+    public void addEdge(int u, int v) {
+        adjList[u].add(v);
+    }
+
+    public List<Integer> topologicalSort() {
+        Stack<Integer> stack = new Stack<>();
+        boolean[] visited = new boolean[V];
+
+        for (int i = 0; i < V; i++) {
+            if (!visited[i]) {
+                dfs(i, visited, stack);
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            result.add(stack.pop());
+        }
+        return result;
+    }
+
+    private void dfs(int v, boolean[] visited, Stack<Integer> stack) {
+        visited[v] = true;
+
+        for (int neighbor : adjList[v]) {
+            if (!visited[neighbor]) {
+                dfs(neighbor, visited, stack);
+            }
+        }
+
+        stack.push(v);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int vertices = 6;
+        Graph graph = new Graph(vertices);
+
+        graph.addEdge(5, 2);
+        graph.addEdge(5, 0);
+        graph.addEdge(4, 0);
+        graph.addEdge(4, 1);
+        graph.addEdge(2, 3);
+        graph.addEdge(3, 1);
+
+        List<Integer> topologicalOrder = graph.topologicalSort();
+        System.out.println("Topological Sort:");
+        for (int vertex : topologicalOrder) {
+            System.out.print(vertex + " ");
+        }
+    }
+}
