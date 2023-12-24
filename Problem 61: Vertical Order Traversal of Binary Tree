@@ -1,0 +1,44 @@
+public List<List<Integer>> verticalOrder(TreeNode root) {
+    List<List<Integer>> result = new ArrayList<>();
+    if (root == null)
+        return result;
+
+    // Use a TreeMap to maintain order of vertical levels
+    TreeMap<Integer, List<Integer>> map = new TreeMap<>();
+
+    Queue<TreeNode> queue = new LinkedList<>();
+    Queue<Integer> hdQueue = new LinkedList<>(); // Store horizontal distances
+
+    queue.add(root);
+    hdQueue.add(0); // Horizontal distance for root node
+
+    while (!queue.isEmpty()) {
+        TreeNode currentNode = queue.poll();
+        int hd = hdQueue.poll();
+
+        // Update the map with the node at its horizontal distance
+        if (!map.containsKey(hd))
+            map.put(hd, new ArrayList<>());
+
+        map.get(hd).add(currentNode.val);
+
+        // Enqueue left child with updated horizontal distance
+        if (currentNode.left != null) {
+            queue.add(currentNode.left);
+            hdQueue.add(hd - 1);
+        }
+
+        // Enqueue right child with updated horizontal distance
+        if (currentNode.right != null) {
+            queue.add(currentNode.right);
+            hdQueue.add(hd + 1);
+        }
+    }
+
+    // Add the values from the map to the result list
+    for (List<Integer> list : map.values()) {
+        result.add(list);
+    }
+
+    return result;
+}
