@@ -1,0 +1,36 @@
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    public TreeNode(int val) {
+        this.val = val;
+        left = null;
+        right = null;
+    }
+}
+
+public void flatten(TreeNode root) {
+    flattenTree(root);
+}
+
+private TreeNode flattenTree(TreeNode root) {
+    if (root == null)
+        return null;
+
+    // Recursively flatten the left and right subtrees
+    TreeNode leftSubtree = flattenTree(root.left);
+    TreeNode rightSubtree = flattenTree(root.right);
+
+    if (leftSubtree != null) {
+        // Set the right child of the left subtree's root
+        leftSubtree.right = root.right;
+        // Set the root's right child to the root's original left subtree
+        root.right = root.left;
+        // Set the root's left child to null
+        root.left = null;
+    }
+
+    // Return the root of the flattened tree
+    return (rightSubtree != null) ? rightSubtree : (leftSubtree != null) ? leftSubtree : root;
+}
