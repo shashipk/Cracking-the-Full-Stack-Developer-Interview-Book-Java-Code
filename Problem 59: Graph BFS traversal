@@ -1,0 +1,19 @@
+public void bfsTraversal(LinkedList<Integer>[] adjacencyList, int startVertex) {
+    boolean[] visited = new boolean[V];
+    Queue<Integer> queue = new LinkedList<>();
+
+    visited[startVertex - 1] = true;
+    queue.add(startVertex);
+
+    while (!queue.isEmpty()) {
+        int vertex = queue.poll();
+        System.out.print(vertex + " ");
+
+        for (int adjacentVertex : adjacencyList[vertex - 1]) {
+            if (!visited[adjacentVertex - 1]) {
+                visited[adjacentVertex - 1] = true;
+                queue.add(adjacentVertex);
+            }
+        }
+    }
+}
