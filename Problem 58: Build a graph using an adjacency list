@@ -1,0 +1,49 @@
+import java.util.*;
+
+class Graph {
+    private Map<Integer, List<Integer>> adjacencyList;
+
+    public Graph() {
+        adjacencyList = new HashMap<>();
+    }
+
+    public void addEdge(int fromVertex, int toVertex) {
+        // Add toVertex to the adjacency list of fromVertex
+        adjacencyList.computeIfAbsent(fromVertex, k -> new ArrayList<>()).add(toVertex);
+
+        // Add fromVertex to the adjacency list of toVertex (for an undirected graph)
+        adjacencyList.computeIfAbsent(toVertex, k -> new ArrayList<>()).add(fromVertex);
+    }
+
+    public Map<Integer, List<Integer>> getAdjacencyList() {
+        return adjacencyList;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a new graph
+        Graph graph = new Graph();
+
+        // Add edges to the graph
+        graph.addEdge(1, 2);
+        graph.addEdge(1, 3);
+        graph.addEdge(2, 4);
+        graph.addEdge(3, 4);
+        graph.addEdge(3, 5);
+
+        // Retrieve the adjacency list of the graph
+        Map<Integer, List<Integer>> adjacencyList = graph.getAdjacencyList();
+
+        // Print the adjacency list
+        for (Map.Entry<Integer, List<Integer>> entry : adjacencyList.entrySet()) {
+            int vertex = entry.getKey();
+            List<Integer> neighbors = entry.getValue();
+            System.out.print( vertex + " -> ");
+            for (int neighbor : neighbors) {
+                System.out.print(neighbor + " ");
+            }
+            System.out.println();
+        }
+    }
+}
