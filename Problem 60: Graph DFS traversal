@@ -1,0 +1,20 @@
+class Graph {
+    private int vertices;
+    private LinkedList<Integer>[] adjacencyList;
+
+    public void dfs(int startVertex) {
+        boolean[] visited = new boolean[vertices];
+        dfsRecursive(startVertex, visited);
+    }
+
+    private void dfsRecursive(int vertex, boolean[] visited) {
+        visited[vertex] = true;
+        System.out.print(vertex + " -> ");
+
+        for (int neighbor : adjacencyList[vertex]) {
+            if (!visited[neighbor]) {
+                dfsRecursive(neighbor, visited);
+            }
+        }
+    }
+}
