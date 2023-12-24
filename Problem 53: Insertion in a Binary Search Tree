@@ -1,0 +1,46 @@
+class TreeNode {
+    int key;
+    TreeNode left, right;
+
+    public TreeNode(int item) {
+        key = item;
+        left = right = null;
+    }
+}
+
+class BinarySearchTree {
+    TreeNode root;
+
+    public BinarySearchTree() {
+        root = null;
+    }
+
+    void insert(int key) {
+        root = insertRec(root, key);
+    }
+
+    TreeNode insertRec(TreeNode root, int key) {
+        if (root == null) {
+            root = new TreeNode(key);
+            return root;
+        }
+
+        if (key < root.key)
+            root.left = insertRec(root.left, key);
+        else if (key > root.key)
+            root.right = insertRec(root.right, key);
+
+        return root;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BinarySearchTree bst = new BinarySearchTree();
+        bst.insert(10);
+        bst.insert(5);
+        bst.insert(15);
+        bst.insert(3);
+        bst.insert(7);
+    }
+}
