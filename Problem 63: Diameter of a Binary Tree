@@ -1,0 +1,31 @@
+public int diameterOfBinaryTree(TreeNode root) {
+    if (root == null)
+        return 0;
+
+    // Calculate the height of the left subtree
+    int leftHeight = height(root.left);
+
+    // Calculate the height of the right subtree
+    int rightHeight = height(root.right);
+
+    // Calculate the diameter through the root
+    int rootDiameter = leftHeight + rightHeight;
+
+    // Recursively find the diameters of left and right subtrees
+    int leftDiameter = diameterOfBinaryTree(root.left);
+    int rightDiameter = diameterOfBinaryTree(root.right);
+
+    // Return the maximum of the three diameters
+    return Math.max(rootDiameter, Math.max(leftDiameter, rightDiameter));
+}
+
+private int height(TreeNode node) {
+    if (node == null)
+        return 0;
+    
+    int leftHeight = height(node.left);
+    int rightHeight = height(node.right);
+
+    // Height of a node is the maximum height of its children plus 1
+    return Math.max(leftHeight, rightHeight) + 1;
+}
