@@ -1,0 +1,58 @@
+class UnionFind {
+    private int[] parent;
+    private int[] rank;
+
+    public UnionFind(int size) {
+        parent = new int[size];
+        rank = new int[size];
+
+        for (int i = 0; i < size; i++) {
+            parent[i] = i; // Initialize each element as its own parent
+            rank[i] = 0;   // Initialize rank as 0
+        }
+    }
+
+    public int find(int x) {
+        if (parent[x] != x) {
+            parent[x] = find(parent[x]); // Path compression
+        }
+        return parent[x];
+    }
+
+    public void union(int x, int y) {
+        int rootX = find(x);
+        int rootY = find(y);
+
+        if (rootX != rootY) {
+            // Union by rank: Attach the smaller rank tree under the larger rank tree
+            if (rank[rootX] < rank[rootY]) {
+                parent[rootX] = rootY;
+            } else if (rank[rootX] > rank[rootY]) {
+                parent[rootY] = rootX;
+            } else {
+                parent[rootY] = rootX;
+                rank[rootX]++;
+            }
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int n = 5; // Number of elements
+
+        UnionFind uf = new UnionFind(n);
+
+        // Perform union operations
+        uf.union(0, 1);
+        uf.union(2, 3);
+        uf.union(0, 4);
+
+        // Find representatives (leaders)
+        int leader0 = uf.find(0); // Should be the same as leader of 4
+        int leader3 = uf.find(3); // Should be the same as leader of 2
+
+        System.out.println("Leader of 0: " + leader0);
+        System.out.println("Leader of 3: " + leader3);
+    }
+}
