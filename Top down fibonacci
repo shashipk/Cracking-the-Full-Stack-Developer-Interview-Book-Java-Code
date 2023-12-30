@@ -1,0 +1,19 @@
+public int topDownFibonacci(int n) {
+    int[] memo = new int[n + 1];
+    Arrays.fill(memo, -1);
+    
+    return fibonacci(n, memo);
+}
+
+private int fibonacci(int n, int[] memo) {
+    if (n <= 1) {
+        return n;
+    }
+    
+    if (memo[n] != -1) {
+        return memo[n];
+    }
+    
+    memo[n] = fibonacci(n - 1, memo) + fibonacci(n - 2, memo);
+    return memo[n];
+}
