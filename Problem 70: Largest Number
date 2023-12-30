@@ -1,0 +1,25 @@
+import java.util.Arrays;
+
+public String largestNumber(int[] nums) {
+    // Convert nums to an array of strings for custom comparison
+    String[] numsStr = new String[nums.length];
+    for (int i = 0; i < nums.length; i++) {
+        numsStr[i] = Integer.toString(nums[i]);
+    }
+
+    // Sort the array of strings using custom comparison
+    Arrays.sort(numsStr, (a, b) -> (b + a).compareTo(a + b));
+
+    // Handle the case where the result is "0" (all zeros in the input)
+    if (numsStr[0].equals("0")) {
+        return "0";
+    }
+
+    // Concatenate the sorted strings to form the largest number
+    StringBuilder result = new StringBuilder();
+    for (String str : numsStr) {
+        result.append(str);
+    }
+
+    return result.toString();
+}
