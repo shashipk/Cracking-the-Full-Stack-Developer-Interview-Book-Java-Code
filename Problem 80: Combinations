@@ -1,0 +1,19 @@
+public List<List<Integer>> combine(int n, int k) {
+    List<List<Integer>> result = new ArrayList<>();
+    List<Integer> currentCombination = new ArrayList<>();
+    backtrack(result, currentCombination, n, k, 1);
+    return result;
+}
+
+private void backtrack(List<List<Integer>> result, List<Integer> currentCombination, int n, int k, int start) {
+    if (k == 0) {
+        result.add(new ArrayList<>(currentCombination)); // Add a copy of the current combination
+        return;
+    }
+
+    for (int i = start; i <= n; i++) {
+        currentCombination.add(i);
+        backtrack(result, currentCombination, n, k - 1, i + 1);
+        currentCombination.remove(currentCombination.size() - 1); // Backtrack
+    }
+}
