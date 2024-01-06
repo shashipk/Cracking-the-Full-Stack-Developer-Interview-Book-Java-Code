@@ -1,0 +1,95 @@
+class TrieNode {
+    TrieNode[] children;
+    boolean isEndOfWord;
+
+    public TrieNode() {
+        children = new TrieNode[26]; // Assuming lowercase English alphabet characters
+        isEndOfWord = false;
+    }
+}
+
+class Trie {
+    private TrieNode root;
+
+    public Trie() {
+        root = new TrieNode();
+    }
+
+    // Insert a word into the Trie
+    public void insert(String word) {
+        TrieNode node = root;
+        for (char ch : word.toCharArray()) {
+            int index = ch - 'a';
+            if (node.children[index] == null) {
+                node.children[index] = new TrieNode();
+            }
+            node = node.children[index];
+        }
+        node.isEndOfWord = true;
+    }
+
+    // Search for a word in the Trie
+    public boolean search(String word) {
+        TrieNode node = root;
+        for (char ch : word.toCharArray()) {
+            int index = ch - 'a';
+            if (node.children[index] == null) {
+                return false; // Character not found in the Trie
+            }
+            node = node.children[index];
+        }
+        return node.isEndOfWord; // Return true if the word is found, else false
+    }
+
+    // Check if a prefix exists in the Trie
+    public boolean startsWith(String prefix) {
+        TrieNode node = root;
+        for (char ch : prefix.toCharArray()) {
+            int index = ch - 'a';
+            if (node.children[index] == null) {
+                return false; // Prefix not found in the Trie
+            }
+            node = node.children[index];
+        }
+        return true; // Prefix exists in the Trie
+    }
+
+    // Delete a word from the Trie (returns true if successful)
+    public boolean delete(String word) {
+        return delete(root, word, 0);
+    }
+
+    private boolean delete(TrieNode node, String word, int depth) {
+        if (depth == word.length()) {
+            if (!node.isEndOfWord) {
+                return false; // Word not found in the Trie
+            }
+            node.isEndOfWord = false;
+            return isNodeEmpty(node);
+        }
+
+        char ch = word.charAt(depth);
+        int index = ch - 'a';
+        if (node.children[index] == null) {
+            return false; // Word not found in the Trie
+        }
+
+        boolean shouldDeleteChild = delete(node.children[index], word, depth + 1);
+
+        if (shouldDeleteChild) {
+            node.children[index] = null;
+            return isNodeEmpty(node);
+        }
+
+        return false;
+    }
+
+    private boolean isNodeEmpty(TrieNode node) {
+        for (TrieNode child : node.children) {
+            if (child != null) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
