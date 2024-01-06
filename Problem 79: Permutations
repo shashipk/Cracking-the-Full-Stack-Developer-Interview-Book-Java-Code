@@ -1,0 +1,38 @@
+public List<List<Integer>> permute(int[] nums) {
+    List<List<Integer>> result = new ArrayList<>();
+    List<Integer> currentPermutation = new ArrayList<>();
+    List<Integer> remainingNumbers = new ArrayList<>();
+    
+    // Initialize remainingNumbers with all elements from nums
+    for (int num : nums) {
+        remainingNumbers.add(num);
+    }
+    
+    // Start the backtracking process
+    backtrack(result, currentPermutation, remainingNumbers);
+    
+    return result;
+}
+
+private void backtrack(List<List<Integer>> result, List<Integer> currentPermutation, List<Integer> remainingNumbers) {
+    if (remainingNumbers.isEmpty()) {
+        // A valid permutation has been constructed, add it to the result
+        result.add(new ArrayList<>(currentPermutation));
+        return;
+    }
+    
+    for (int i = 0; i < remainingNumbers.size(); i++) {
+        int currentNum = remainingNumbers.get(i);
+        
+        // Choose
+        currentPermutation.add(currentNum);
+        remainingNumbers.remove(i);
+        
+        // Explore
+        backtrack(result, currentPermutation, remainingNumbers);
+        
+        // Unchoose (backtrack)
+        currentPermutation.remove(currentPermutation.size() - 1);
+        remainingNumbers.add(i, currentNum);
+    }
+}
