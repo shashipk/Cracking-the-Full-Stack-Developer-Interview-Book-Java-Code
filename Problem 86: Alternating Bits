@@ -1,0 +1,12 @@
+public boolean hasAlternatingBits(int n) {
+    int prevBit = -1; // Initialize prevBit to -1
+    while (n > 0) {
+        int currentBit = n & 1; // Get the rightmost bit
+        if (currentBit == prevBit) {
+            return false; // Not alternating bits
+        }
+        prevBit = currentBit; // Update prevBit
+        n >>= 1; // Right shift to check the next bit
+    }
+    return true; // All bits are alternating
+}
