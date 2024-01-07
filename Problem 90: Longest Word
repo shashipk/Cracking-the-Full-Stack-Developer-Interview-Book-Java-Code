@@ -1,0 +1,58 @@
+class TrieNode {
+    TrieNode[] children;
+    boolean isEndOfWord;
+    
+    TrieNode() {
+        children = new TrieNode[26];
+        isEndOfWord = false;
+    }
+}
+
+class Trie {
+    TrieNode root;
+    String longestWord;
+    
+    Trie() {
+        root = new TrieNode();
+        longestWord = "";
+    }
+    
+    public void insert(String word) {
+        TrieNode node = root;
+        for (char c : word.toCharArray()) {
+            if (node.children[c - 'a'] == null) {
+                node.children[c - 'a'] = new TrieNode();
+            }
+            node = node.children[c - 'a'];
+        }
+        node.isEndOfWord = true;
+    }
+    
+    public void dfs(TrieNode node, StringBuilder currentWord) {
+        if (currentWord.length() > longestWord.length()) {
+            longestWord = currentWord.toString();
+        }
+        
+        for (int i = 0; i < 26; i++) {
+            if (node.children[i] != null && node.children[i].isEndOfWord) {
+                char nextChar = (char) ('a' + i);
+                currentWord.append(nextChar);
+                dfs(node.children[i], currentWord);
+                currentWord.deleteCharAt(currentWord.length() - 1); // Backtrack
+            }
+        }
+    }
+    
+    public String findLongestWord() {
+        dfs(root, new StringBuilder());
+        return longestWord;
+    }
+}
+
+public String longestWord(String[] words) {
+    Trie trie = new Trie();
+    for (String word : words) {
+        trie.insert(word);
+    }
+    return trie.findLongestWord();
+}
