@@ -1,0 +1,34 @@
+int getBit(int n, int k) {
+    return (n >> k) & 1;
+}
+
+int setBit(int n, int k) {
+    return n | (1 << k);
+}
+
+int clearBit(int n, int k) {
+    return n & ~(1 << k);
+}
+
+int rightMostSetBit(int n) {
+    return n & -n;
+}
+
+int toggleKthBit(int n, int k) {
+    return n ^ (1 << k);
+}
+
+boolean isPowerOfTwo(int n) {
+    if (n <= 0) return false;
+    return (n & (n - 1)) == 0;
+}
+
+int countSetBits(int n) {
+    int count = 0;
+    while (n > 0) {
+        n &= (n - 1); // drops the lowest set bit of n
+        count++;
+    }
+    return count;
+}
+
