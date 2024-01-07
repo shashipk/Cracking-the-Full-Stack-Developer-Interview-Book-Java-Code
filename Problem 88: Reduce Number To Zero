@@ -1,0 +1,14 @@
+public int numberOfSteps(int num) {
+    int steps = 0;
+    while (num > 0) {
+        if ((num & 1) == 0) {
+            // If num is even (last bit is 0), divide by 2
+            num >>= 1; // Equivalent to num = num / 2
+        } else {
+            // If num is odd (last bit is 1), subtract 1
+            num -= 1;
+        }
+        steps++;
+    }
+    return steps;
+}
