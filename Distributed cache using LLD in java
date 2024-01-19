@@ -1,0 +1,55 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class DistributedCache {
+    private final int numberOfNodes;
+    private final Map<Integer, CacheNode> cacheNodes;
+
+    public DistributedCache(int numberOfNodes) {
+        this.numberOfNodes = numberOfNodes;
+        this.cacheNodes = new HashMap<>();
+
+        // Initialize cache nodes
+        for (int i = 0; i < numberOfNodes; i++) {
+            cacheNodes.put(i, new CacheNode());
+        }
+    }
+
+    public void put(String key, String value) {
+        int nodeIndex = getCacheNodeIndex(key);
+        cacheNodes.get(nodeIndex).put(key, value);
+    }
+
+    public String get(String key) {
+        int nodeIndex = getCacheNodeIndex(key);
+        return cacheNodes.get(nodeIndex).get(key);
+    }
+
+    private int getCacheNodeIndex(String key) {
+        // Calculate the node index based on the hash of the key
+        int hash = key.hashCode();
+        return Math.abs(hash % numberOfNodes);
+    }
+
+    // Cache node class to store data
+    private static class CacheNode {
+        private final Map<String, String> data = new HashMap<>();
+
+        public void put(String key, String value) {
+            data.put(key, value);
+        }
+
+        public String get(String key) {
+            return data.get(key);
+        }
+    }
+
+    public static void main(String[] args) {
+        DistributedCache cache = new DistributedCache(3);
+        cache.put("Key1", "Value1");
+        cache.put("Key2", "Value2");
+
+        System.out.println(cache.get("Key1")); // Output: Value1
+        System.out.println(cache.get("Key2")); // Output: Value2
+    }
+}
