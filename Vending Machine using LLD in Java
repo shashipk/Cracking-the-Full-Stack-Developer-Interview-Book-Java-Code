@@ -1,0 +1,137 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Item {
+    private String name;
+    private double price;
+    private int quantity;
+
+    public Item(String name, double price, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void decrementQuantity() {
+        if (quantity > 0) {
+            quantity--;
+        }
+    }
+}
+
+class Coin {
+    private double value;
+
+    public Coin(double value) {
+        this.value = value;
+    }
+
+    public double getValue() {
+        return value;
+    }
+}
+
+class User {
+    private double balance;
+
+    public User() {
+        this.balance = 0.0;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void addBalance(double amount) {
+        balance += amount;
+    }
+}
+
+class VendingMachine {
+    private List<Item> items;
+    private List<Coin> acceptedCoins;
+
+    public VendingMachine() {
+        this.items = new ArrayList<>();
+        this.acceptedCoins = new ArrayList<>();
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public void addAcceptedCoin(Coin coin) {
+        acceptedCoins.add(coin);
+    }
+
+    public void displayItems() {
+        for (Item item : items) {
+            System.out.println(item.getName() + " - Price: $" + item.getPrice()
+                                                                  + " Quantity: " + item.getQuantity());
+        }
+    }
+
+    public void insertCoin(User user, Coin coin) {
+        if (acceptedCoins.contains(coin)) {
+            user.addBalance(coin.getValue());
+        } else {
+            System.out.println("Coin not accepted: $" + coin.getValue());
+        }
+    }
+
+    public void purchaseItem(User user, Item item) {
+        if (items.contains(item) && user.getBalance() >= item.getPrice()
+                                                                        && item.getQuantity() > 0) {
+            user.addBalance(-item.getPrice());
+            item.decrementQuantity();
+            System.out.println("Item purchased: " + item.getName());
+        } else {
+            System.out.println("Unable to purchase item: " + item.getName());
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        VendingMachine vendingMachine = new VendingMachine();
+
+        Item item1 = new Item("Soda", 1.25, 5);
+        Item item2 = new Item("Chips", 1.00, 3);
+
+        vendingMachine.addItem(item1);
+        vendingMachine.addItem(item2);
+
+        vendingMachine.addAcceptedCoin(new Coin(0.25));
+        vendingMachine.addAcceptedCoin(new Coin(0.10));
+
+        User user = new User();
+
+        // Display available items and user's balance
+        vendingMachine.displayItems();
+        System.out.println("User Balance: $" + user.getBalance());
+
+        // Insert coins
+        vendingMachine.insertCoin(user, new Coin(0.25));
+        vendingMachine.insertCoin(user, new Coin(0.10));
+
+        // Purchase items
+        vendingMachine.purchaseItem(user, item1);
+        vendingMachine.purchaseItem(user, item2);
+
+        // Display updated balance and item availability
+        System.out.println("User Balance: $" + user.getBalance());
+        vendingMachine.displayItems();
+    }
+}
