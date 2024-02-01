@@ -1,0 +1,73 @@
+<!DOCTYPE html> <!-- Document Type Declaration -->
+<html>
+<head>
+  <meta charset="UTF-8"> <!-- Character Encoding -->
+  <title>Sample Page</title> <!-- Page Title -->
+  <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Link to External Stylesheet -->
+  <style>
+    /* Internal CSS Styles */
+    body {
+      background-color: #f0f0f0; /* Background Color */
+      font-family: Arial, sans-serif; /* Font Family */
+    }
+  </style>
+</head>
+<body>
+  <h1>Main Heading</h1> <!-- Heading Level 1 -->
+  <h2>Subheading</h2> <!-- Heading Level 2 -->
+  <p>This is a paragraph.</p> <!-- Paragraph -->
+  <a href="https://www.example.com">Visit Example</a> <!-- Anchor/Link -->
+  
+  <ul>
+    <!-- Unordered List -->
+    <li>Item 1</li> <!-- List Item -->
+    <li>Item 2</li> <!-- List Item -->
+  </ul>
+  
+  <ol>
+    <!-- Ordered List -->
+    <li>First item</li> <!-- List Item -->
+    <li>Second item</li> <!-- List Item -->
+  </ol>
+  
+  <dl>
+    <!-- Definition List -->
+    <dt>Term 1</dt> <!-- Definition Term -->
+    <dd>Definition 1</dd> <!-- Definition Description -->
+    <dt>Term 2</dt> <!-- Definition Term -->
+    <dd>Definition 2</dd> <!-- Definition Description -->
+  </dl>
+  
+  <div class="container">
+    <!-- Division -->
+    Content goes here
+  </div>
+  
+  <p>This is a <span style="color: blue;">blue</span> word.</p> <!-- Inline Container -->
+  
+  <img src="image.jpg" alt="An example image"> <!-- Image -->
+  
+  <table>
+    <!-- Table -->
+    <tr>
+      <th>Header 1</th> <!-- Table Header Cell -->
+      <th>Header 2</th> <!-- Table Header Cell -->
+    </tr>
+    <tr>
+      <td>Data 1</td> <!-- Table Data Cell -->
+      <td>Data 2</td> <!-- Table Data Cell -->
+    </tr>
+  </table>
+  
+  <form action="/submit" method="post">
+    <!-- Form -->
+    <label for="name">Name:</label> <!-- Form Label -->
+    <input type="text" id="name" name="name" required> <!-- Input Field -->
+    <br>
+    <label for="email">Email:</label> <!-- Form Label -->
+    <input type="email" id="email" name="email" required> <!-- Input Field -->
+    <br>
+    <button type="submit">Submit</button> <!-- Form Button -->
+  </form>
+</body>
+</html>
