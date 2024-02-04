@@ -1,0 +1,51 @@
+// 1. Selecting Elements with querySelector and getElementById:
+// Using querySelector
+const element = document.querySelector('.example-class');
+
+// Using getElementById
+const elementById = document.getElementById('unique-element-id');
+
+
+// 2. Modifying Content with innerHTML and textContent:
+// Getting and setting innerHTML
+const element = document.querySelector('.example-class');
+const htmlContent = element.innerHTML;
+element.innerHTML = '<p>New content</p>';
+
+// Getting and setting textContent
+const textElement = document.querySelector('.text-content');
+const text = textElement.textContent;
+textElement.textContent = 'Updated text';
+
+
+// 3. Handling Events with addEventListener:
+const button = document.querySelector('#my-button');
+button.addEventListener('click', function() {
+  alert('Button clicked!');
+});
+
+
+// 4. Creating and Modifying Elements with createElement and appendChild:
+// Creating a new paragraph element
+const paragraph = document.createElement('p');
+paragraph.textContent = 'New paragraph content';
+
+// Appending the paragraph to an existing element
+const container = document.querySelector('.container');
+container.appendChild(paragraph);
+
+
+// 5. Manipulating Element Classes with classList:
+const element = document.querySelector('.example-class');
+
+// Adding a class
+element.classList.add('new-class');
+
+// Removing a class
+element.classList.remove('example-class');
+
+// Toggling a class (adds if not present, removes if present)
+element.classList.toggle('toggle-class');
+
+// Checking if a class is present
+const hasClass = element.classList.contains('new-class');
