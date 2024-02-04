@@ -1,0 +1,57 @@
+1. Arrow function
+
+// ES5
+function add(x, y) {
+  return x + y;
+}
+
+// ES6
+const add = (x, y) => x + y;
+
+
+
+2. let and const Declarations:
+
+// ES5
+var x = 10;
+var y = 20;
+
+// ES6
+let x = 10;
+const y = 20;
+
+
+
+3. Template Literals:
+
+// ES5
+var message = "Hello, " + name + "!";
+
+// ES6
+const message = `Hello, ${name}!`;
+
+
+
+4. Default Parameters:
+
+// ES6
+function greet(name = "User") {
+  return `Hello, ${name}!`;
+}
+
+
+
+5. Destructuring Assignment:
+
+// ES6
+const { firstName, lastName } = person;
+
+6. Classes:
+
+// ES6
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
