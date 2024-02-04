@@ -1,0 +1,126 @@
+1. Variables and Data Types
+
+// Variable declaration
+var x; // Declaring a variable without initializing it (not recommended)
+let y = 10; // Declaring and initializing a variable (block-scoped)
+const z = 3.14; // Declaring a constant (block-scoped)
+
+// Data types
+let number = 42; // Number
+let text = "Hello, World!"; // String
+let isTrue = true; // Boolean
+let array = [1, 2, 3]; // Array
+let object = { key: "value" }; // Object
+let emptyValue = null; // Null
+let undefinedValue = undefined; // Undefined
+
+// Type checking
+typeof variableName;
+
+
+
+2. Operators
+
+// Arithmetic operators
+let a = 5 + 3;
+let b = 10 - 2;
+let c = 6 * 4;
+let d = 8 / 2;
+
+// Comparison operators
+let isEqual = a === b;
+let isNotEqual = a !== b;
+let isGreaterThan = a > b;
+let isLessThan = a < b;
+
+// Logical operators
+let andOperator = true && false;
+let orOperator = true || false;
+let notOperator = !true;
+
+
+
+3. Conditional Statements
+
+// if-else statement
+if (condition) {
+  // Code to execute if the condition is true
+} else {
+  // Code to execute if the condition is false
+}
+
+// switch statement
+switch (value) {
+  case 'A':
+    // Code to execute if value is 'A'
+    break;
+  case 'B':
+    // Code to execute if value is 'B'
+    break;
+  default:
+    // Code to execute if none of the cases match
+}
+
+
+4. Loops
+
+// for loop
+for (let i = 0; i < 5; i++) {
+  // Code to repeat
+}
+
+// while loop
+let i = 0;
+while (i < 5) {
+  // Code to repeat
+  i++;
+}
+
+// do-while loop
+let j = 0;
+do {
+  // Code to repeat
+  j++;
+} while (j < 5);
+
+
+5. Functions
+
+// Function declaration
+function functionName(parameter1, parameter2) {
+  // Code to execute
+  return result;
+}
+
+// Function expression (anonymous function)
+const add = function (a, b) {
+  return a + b;
+};
+
+// Arrow function
+const multiply = (x, y) => x * y;
+
+6. Arrays
+
+let fruits = ["apple", "banana", "cherry"];
+
+// Accessing elements
+let firstFruit = fruits[0];
+let lastFruit = fruits[fruits.length - 1];
+
+// Adding and removing elements
+fruits.push("orange"); // Add to the end
+fruits.pop(); // Remove from the end
+fruits.unshift("grape"); // Add to the beginning
+fruits.shift(); // Remove from the beginning
+
+// Iterating through an array
+for (let i = 0; i < fruits.length; i++) {
+  // Code to process each element
+}
+
+// forEach loop
+fruits.forEach(function (fruit) {
+  // Code to process each element
+});
+
