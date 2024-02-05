@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Slider</title>
+  <style>
+    #slider-container {
+      width: 80%;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    #slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      width: 100%;
+      flex: 0 0 auto;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    #prev, #next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+      color: #333;
+      background-color: #fff;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      user-select: none;
+    }
+
+    #prev {
+      left: 10px;
+    }
+
+    #next {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="slider-container">
+    <div id="slider">
+      <div class="slide"><img src="image1.jpg" alt="Image 1"></div>
+      <div class="slide"><img src="image2.jpg" alt="Image 2"></div>
+      <div class="slide"><img src="image3.jpg" alt="Image 3"></div>
+    </div>
+    <div id="prev">&lt;</div>
+    <div id="next">&gt;</div>
+  </div>
+
+  <script>
+    const slider = document.getElementById('slider');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    let counter = 1;
+
+    nextBtn.addEventListener('click', () => {
+      if (counter < 3) {
+        counter++;
+      } else {
+        counter = 1;
+      }
+      updateSlider();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (counter > 1) {
+        counter--;
+      } else {
+        counter = 3;
+      }
+      updateSlider();
+    });
+
+    function updateSlider() {
+      slider.style.transform = `translateX(${-100 * (counter - 1)}%)`;
+    }
+  </script>
+
+</body>
+</html>
