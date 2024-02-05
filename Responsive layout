@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Layout</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 20px;
+    }
+
+    article {
+      flex: 1;
+      margin: 10px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Responsive Layout</h1>
+  </header>
+
+  <main>
+    <article>
+      <h2>Section 1</h2>
+      <p>Content for section 1 goes here.</p>
+    </article>
+
+    <article>
+      <h2>Section 2</h2>
+      <p>Content for section 2 goes here.</p>
+    </article>
+
+    <article>
+      <h2>Section 3</h2>
+      <p>Content for section 3 goes here.</p>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Responsive Layout</p>
+  </footer>
+
+</body>
+</html>
