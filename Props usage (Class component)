@@ -1,0 +1,40 @@
+// Parent component
+import React, { Component } from 'react';
+import ChildComponent from './ChildComponent';
+
+class App extends Component {
+  render() {
+    // Define props to be passed to the ChildComponent
+    const name = 'John';
+    const age = 30;
+
+    return (
+      <div>
+        {/* Render the ChildComponent and pass props */}
+        <ChildComponent name={name} age={age} />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+// Child component
+import React, { Component } from 'react';
+
+class ChildComponent extends Component {
+  render() {
+    // Access props using this.props
+    const { name, age } = this.props;
+
+    return (
+      <div>
+        {/* Display the props received from the parent component */}
+        <h2>Name: {name}</h2>
+        <h2>Age: {age}</h2>
+      </div>
+    );
+  }
+}
+
+export default ChildComponent;
