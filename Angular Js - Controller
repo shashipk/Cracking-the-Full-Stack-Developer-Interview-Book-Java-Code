@@ -1,0 +1,29 @@
+1. Controller
+
+// Define a module named 'myApp'
+var myApp = angular.module('myApp', []);
+
+// Define a controller named 'MyController' within the 'myApp' module
+myApp.controller('MyController', function($scope) {
+    // Define a property named 'message' in the controller's scope
+    $scope.message = 'Hello, AngularJS!';
+});
+
+
+2. Use in HTML
+
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>AngularJS Controller Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="MyController">
+    <!-- Display the value of 'message' property -->
+    <h1>{{ message }}</h1>
+</div>
+
+</body>
+</html>
