@@ -1,0 +1,33 @@
+1. Html
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Binding Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="MyController">
+    <!-- Displaying the value of the variable 'message' -->
+    <p>{{ message }}</p>
+    
+    <!-- Input field bound to the variable 'inputValue' -->
+    <input type="text" ng-model="inputValue">
+    
+    <!-- Displaying the value of the variable 'inputValue' -->
+    <p>You entered: {{ inputValue }}</p>
+</div>
+
+</body>
+</html>
+
+2. App.js
+// Define the AngularJS application module
+var app = angular.module('myApp', []);
+
+// Define a controller for the application
+app.controller('MyController', function($scope) {
+    // Define a variable in the controller's scope
+    $scope.message = 'Hello, Angular!';
+});
