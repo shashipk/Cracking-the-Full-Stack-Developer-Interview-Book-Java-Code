@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>AngularJS Scopes Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="ParentController">
+  <h2>Parent Scope</h2>
+  <p>Parent Name: {{ parentName }}</p>
+  <button ng-click="updateParentName()">Update Parent Name</button>
+  
+  <div ng-controller="ChildController">
+    <h2>Child Scope</h2>
+    <p>Child Name: {{ childName }}</p>
+    <button ng-click="updateChildName()">Update Child Name</button>
+  </div>
+</div>
+
+<script>
+  var app = angular.module('myApp', []);
+
+  app.controller('ParentController', function($scope) {
+    $scope.parentName = 'John';
+
+    $scope.updateParentName = function() {
+      $scope.parentName = 'Jane';
+    };
+  });
+
+  app.controller('ChildController', function($scope) {
+    $scope.childName = 'Doe';
+
+    $scope.updateChildName = function() {
+      $scope.childName = 'Smith';
+    };
+  });
