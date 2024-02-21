@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>AngularJS Directives Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="MyController">
+  <!-- ng-show directive -->
+  <div ng-show="showMessage">
+    <h1>Welcome to AngularJS!</h1>
+  </div>
+  
+  <!-- ng-hide directive -->
+  <div ng-hide="hideMessage">
+    <h2>Learn AngularJS Directives</h2>
+  </div>
+  
+  <!-- ng-click directive -->
+  <button ng-click="toggleMessage()">Toggle Message</button>
+  
+  <!-- ng-repeat directive -->
+  <ul>
+    <li ng-repeat="fruit in fruits">{{ fruit }}</li>
+  </ul>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+
+app.controller('MyController', function($scope) {
+  $scope.showMessage = true;
+  $scope.hideMessage = false;
+  $scope.fruits = ['Apple', 'Banana', 'Orange', 'Mango'];
+  
+  $scope.toggleMessage = function() {
+    $scope.showMessage = !$scope.showMessage;
+    $scope.hideMessage = !$scope.hideMessage;
+  };
+});
+</script>
+
+</body>
+</html>
