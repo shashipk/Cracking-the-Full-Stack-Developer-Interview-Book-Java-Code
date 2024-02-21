@@ -1,0 +1,12 @@
+// Define a service
+app.service('userService', function() {
+    this.getUser = function() {
+        return { name: 'John', age: 30 };
+    };
+});
+
+// Define a controller that depends on the userService
+app.controller('UserController', ['$scope', 'userService', function($scope, userService) {
+    // Injected userService dependency
+    $scope.user = userService.getUser();
+}]);
