@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>AngularJS Form Handling Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="FormController">
+  <form ng-submit="submitForm()" name="myForm">
+    <label>Name:</label>
+    <input type="text" ng-model="formData.name" ng-required="true"><br>
+    
+    <label>Email:</label>
+    <input type="email" ng-model="formData.email" ng-required="true"><br>
+    
+    <label>Password:</label>
+    <input type="password" ng-model="formData.password" ng-minlength="6" ng-maxlength="12" ng-pattern="/^[a-zA-Z0-9]*$/" ng-required="true"><br>
+    
+    <button type="submit" ng-disabled="myForm.$invalid">Submit</button>
+  </form>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+
+app.controller('FormController', function($scope) {
+  $scope.formData = {};
+  
+  $scope.submitForm = function() {
+    if ($scope.myForm.$valid) {
+      console.log('Form submitted successfully:', $scope.formData);
+      // Perform form submission logic here
+    } else {
+      console.log('Form is invalid. Please correct errors.');
+    }
+  };
+});
+</script>
+
+</body>
+</html>
