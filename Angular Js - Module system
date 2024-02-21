@@ -1,0 +1,19 @@
+// Define a new Angular module
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home.component';
+import { AboutComponent } from './about.component';
+
+@NgModule({
+  declarations: [AppComponent, HomeComponent, AboutComponent],
+  imports: [CommonModule, FormsModule, RouterModule.forRoot([
+    { path: '', component: HomeComponent },
+    { path: 'about', component: AboutComponent }
+  ])],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
