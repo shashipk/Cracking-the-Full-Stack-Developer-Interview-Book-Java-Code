@@ -1,3 +1,26 @@
+// Controlled Component
+
+import React, { useState } from 'react';
+
+function ControlledComponent() {
+  const [value, setValue] = useState('');
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  return (
+    <div>
+      <input type="text" value={value} onChange={handleChange} />
+      <p>Value: {value}</p>
+    </div>
+  );
+}
+
+export default ControlledComponent;
+
+// Uncontrolled Component
+
 import React, { useRef } from 'react';
 
 function UncontrolledComponent() {
