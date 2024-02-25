@@ -1,0 +1,23 @@
+-- Create a new database
+CREATE DATABASE dbname;
+
+-- Create a new table
+CREATE TABLE tablename (
+    column1 datatype1 constraints,
+    column2 datatype2 constraints,
+    ...
+);
+
+-- Add a new column to an existing table
+ALTER TABLE tablename
+ADD columnname datatype constraints;
+
+-- Modify an existing column
+ALTER TABLE tablename
+ALTER COLUMN columnname newdatatype;
+
+-- Drop a table
+DROP TABLE tablename;
+
+-- Drop a database
+DROP DATABASE dbname;
