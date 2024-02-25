@@ -1,0 +1,49 @@
+-- This file contains SQL joins and code examples
+
+-- Create sample tables for demonstration
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    department_id INT
+);
+
+CREATE TABLE departments (
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(50)
+);
+
+-- Insert sample data into tables
+INSERT INTO departments (department_id, department_name)
+VALUES (1, 'Engineering'), (2, 'Marketing'), (3, 'Finance');
+
+INSERT INTO employees (employee_id, first_name, last_name, department_id)
+VALUES (1, 'John', 'Doe', 1),
+       (2, 'Jane', 'Smith', 2),
+       (3, 'Michael', 'Johnson', 1),
+       (4, 'Emily', 'Brown', 3);
+
+-- INNER JOIN: Retrieve employees along with their department names
+SELECT e.employee_id, e.first_name, e.last_name, d.department_name
+FROM employees e
+INNER JOIN departments d ON e.department_id = d.department_id;
+
+-- LEFT JOIN: Retrieve all employees and their departments (including employees without departments)
+SELECT e.employee_id, e.first_name, e.last_name, d.department_name
+FROM employees e
+LEFT JOIN departments d ON e.department_id = d.department_id;
+
+-- RIGHT JOIN: Retrieve all departments and their employees (including departments without employees)
+SELECT e.employee_id, e.first_name, e.last_name, d.department_name
+FROM departments d
+RIGHT JOIN employees e ON d.department_id = e.department_id;
+
+-- FULL OUTER JOIN: Retrieve all employees and departments (including unmatched rows from both tables)
+SELECT e.employee_id, e.first_name, e.last_name, d.department_name
+FROM employees e
+FULL OUTER JOIN departments d ON e.department_id = d.department_id;
+
+-- SELF JOIN: Retrieve employees who have the same department manager
+SELECT e1.first_name AS employee_name, e2.first_name AS manager_name
+FROM employees e1
+JOIN employees e2 ON e1.department_id = e2.department_id AND e1.employee_id != e2.employee_id;
