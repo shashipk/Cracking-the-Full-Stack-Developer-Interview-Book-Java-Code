@@ -1,0 +1,16 @@
+-- This file contains commands for querying data from the database
+
+-- Select data from a table
+SELECT column1, column2, ...
+FROM tablename
+WHERE condition;
+
+-- Perform calculations on selected data
+SELECT SUM(column), AVG(column), COUNT(*)
+FROM tablename
+WHERE condition;
+
+-- Join multiple tables
+SELECT t1.column1, t2.column2
+FROM table1 t1
+JOIN table2 t2 ON t1.id = t2.id;
