@@ -1,0 +1,7 @@
+-- This file contains commands for controlling access to the database
+
+-- Grant permissions to a user or role
+GRANT permission ON object TO user_or_role;
+
+-- Revoke permissions from a user or role
+REVOKE permission ON object FROM user_or_role;
