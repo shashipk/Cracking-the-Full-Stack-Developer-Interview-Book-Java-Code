@@ -1,0 +1,8 @@
+-- Begin a new transaction
+BEGIN TRANSACTION;
+
+-- Commit a transaction and make changes permanent
+COMMIT;
+
+-- Rollback a transaction and undo changes
+ROLLBACK;
