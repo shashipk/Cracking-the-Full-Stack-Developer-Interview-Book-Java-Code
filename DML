@@ -1,0 +1,12 @@
+-- Insert data into a table
+INSERT INTO tablename (column1, column2, ...)
+VALUES (value1, value2, ...);
+
+-- Update existing data in a table
+UPDATE tablename
+SET column1 = newvalue1, column2 = newvalue2, ...
+WHERE condition;
+
+-- Delete data from a table
+DELETE FROM tablename
+WHERE condition;
