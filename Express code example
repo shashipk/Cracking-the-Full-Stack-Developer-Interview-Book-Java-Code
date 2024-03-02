@@ -1,0 +1,31 @@
+// Import the Express module
+const express = require('express');
+
+// Create an Express application
+const app = express();
+
+// Define middleware functions
+app.use((req, res, next) => {
+  console.log('Middleware 1');
+  next(); // Call the next middleware function
+});
+
+app.use((req, res, next) => {
+  console.log('Middleware 2');
+  next(); // Call the next middleware function
+});
+
+// Define routes
+app.get('/', (req, res) => {
+  res.send('Hello, Express!');
+});
+
+app.get('/about', (req, res) => {
+  res.send('About page');
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
