@@ -1,0 +1,29 @@
+// Constructor Injection:
+public class UserService {
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    // Other methods using userRepository
+}
+
+// Setter Injection:
+public class UserService {
+    private UserRepository userRepository;
+
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    // Other methods using userRepository
+}
+
+// Field Injection
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+
+    // Other methods using userRepository
+}
