@@ -1,0 +1,39 @@
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping("/api")
+public class MyController {
+
+    @Autowired
+    private MyService myService;
+
+    @GetMapping("/hello")
+    @ResponseBody
+    public String hello() {
+        return "Hello World!";
+    }
+
+    @PostMapping("/save")
+    @ResponseBody
+    public String saveData(@RequestBody Data data) {
+        myService.save(data);
+        return "Data saved successfully";
+    }
+}
+
+@Service
+public class MyService {
+
+    @Autowired
+    private MyRepository myRepository;
+
+    @Transactional
+    public void save(Data data) {
+        myRepository.save(data);
+    }
+}
+
+@Repository
+public interface MyRepository extends JpaRepository<Data, Long> {
+}
