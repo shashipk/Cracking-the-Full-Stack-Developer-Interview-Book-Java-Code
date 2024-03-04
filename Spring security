@@ -1,1 +1,25 @@
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+public class HelloController {
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello, Spring Security!";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/admin")
+    public String admin() {
+        return "Admin dashboard";
+    }
+
+    @Secured("ROLE_USER")
+    @GetMapping("/user")
+    public String user() {
+        return "User profile";
+    }
+
+}
