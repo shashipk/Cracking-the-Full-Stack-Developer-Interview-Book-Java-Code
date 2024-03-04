@@ -1,0 +1,17 @@
+@Controller
+public class MyController {
+    
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello"; // Returns the name of the view (e.g., hello.html)
+    }
+}
+
+@RestController
+public class MyRestController {
+    
+    @GetMapping("/api/hello")
+    public String hello() {
+        return "Hello, World!"; // Returns the response directly as JSON or XML
+    }
+}
