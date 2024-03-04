@@ -1,0 +1,25 @@
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import java.util.List;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    // Query method to find users by username
+    List<User> findByUsername(String username);
+
+    // Query method to find users by email
+    List<User> findByEmail(String email);
+
+    // Query method to find users by username or email
+    List<User> findByUsernameOrEmail(String username, String email);
+
+    // Custom JPQL query to find users by username
+    @Query("SELECT u FROM User u WHERE u.username = ?1")
+    List<User> findByUsernameCustomQuery(String username);
+
+    // Custom native SQL query to find users by email
+    @Query(value = "SELECT * FROM users WHERE email = ?1", nativeQuery = true)
+    List<User> findByEmailCustomQuery(String email);
+}
