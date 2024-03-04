@@ -1,0 +1,40 @@
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@Configuration
+public class ProfileConfig {
+
+    @Bean
+    @Profile("dev")
+    public String devMessage() {
+        return "Development Profile Message";
+    }
+
+    @Bean
+    @Profile("prod")
+    public String prodMessage() {
+        return "Production Profile Message";
+    }
+}
+
+@RestController
+class ProfileController {
+
+    @Value("${app.message}")
+    private String message;
+
+    @GetMapping("/")
+    public String home() {
+        return "Hello from Spring Boot!";
+    }
+
+    @GetMapping("/message")
+    public String getMessage() {
+        return message;
+    }
+}
+
